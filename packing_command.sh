@@ -1,0 +1,1 @@
+zip -r -9 ../ZoteroExplorer.xpi * -x "*.DS_Store" "*.svn*" "packaging_command.sh"

@@ -1,0 +1,17 @@
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>zoteroexporter@peterjiz.com</em:id>
+    <em:name>ZoteroExporter</em:name>
+    <em:version>1.0</em:version>
+    <em:creator>Peter El-Jiz</em:creator>
+    <em:description>A plugin to export selected items from Zotero.</em:description>
+    <em:targetApplication>
+      <Description>
+        <em:id>zotero@chnm.gmu.edu</em:id>
+        <em:minVersion>6.0</em:minVersion>
+        <em:maxVersion>8.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>

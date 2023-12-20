@@ -1,0 +1,2 @@
+content zoteroexporter chrome/content/
+overlay chrome://zotero/content/standalone/standalone.xul chrome://zoteroexporter/content/ZoteroExporterMenu.xul
