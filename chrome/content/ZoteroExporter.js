@@ -40,6 +40,7 @@ async function exportSelectedItems() {
     var zoteroFile = Zotero.File.pathToFile(filePath);
     zoteroFile.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0o666);
 
+    var pdfFolderPathL1 = "files/";
     var pdfFolderPath = folderPath + "files/";
     var zoteroPdfFolderPath = Zotero.File.pathToFile(pdfFolderPath)
     if (!zoteroPdfFolderPath.exists()) {
@@ -58,10 +59,15 @@ async function exportSelectedItems() {
                         let attachmentFilepath = attachment.getFilePath();
                         let zoteroAttachmentFilepath = Zotero.File.pathToFile(attachmentFilepath);
 
-                        zoteroAttachmentFilepath.copyToFollowingLinks(zoteroPdfFolderPath, zoteroAttachmentFilepath.leafName);
+                        var zoteroSinglePdfFolderPath = Zotero.File.pathToFile(`${pdfFolderPath}${attachmentID}/`)
+                        if (!zoteroSinglePdfFolderPath.exists()) {
+                            zoteroSinglePdfFolderPath.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0o755);
+                        }
+
+                        zoteroAttachmentFilepath.copyToFollowingLinks(zoteroSinglePdfFolderPath, zoteroAttachmentFilepath.leafName);
 
                         // pdfPaths.push(`${pdfFolderPath}${zoteroAttachmentFilepath.leafName}`);
-                        pdfPaths.unshift(`${pdfFolderPath}${zoteroAttachmentFilepath.leafName}`);
+                        pdfPaths.unshift(`${pdfFolderPathL1}${attachmentID}/${zoteroAttachmentFilepath.leafName}`);
 
                         break;
 
