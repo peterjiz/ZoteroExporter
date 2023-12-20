@@ -12,7 +12,10 @@ async function exportSelectedItems() {
     // Prompt the user to select a folder
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-    fp.init(window, "Export", nsIFilePicker.modeGetFolder);
+    // fp.init(window, "Export", nsIFilePicker.modeGetFolder);
+    fp.init(window, "Export", nsIFilePicker.modeSave);
+    fp.defaultString = "Exported Items";
+
 
     let result = await new Promise(resolve => fp.open(resolve));
     if (result != nsIFilePicker.returnOK && result != nsIFilePicker.returnReplace) {
@@ -20,7 +23,8 @@ async function exportSelectedItems() {
     }
 
     var folder = fp.file;
-    var folderPath = folder.path + "/Exported Items/"; // Replace with your desired file name and extension
+    // var folderPath = folder.path + "/Exported Items/"; // Replace with your desired file name and extension
+    var folderPath = folder.path + "/"
     var zoteroExportFolderPath = Zotero.File.pathToFile(folderPath)
     if (zoteroExportFolderPath.exists()) {
         try {
