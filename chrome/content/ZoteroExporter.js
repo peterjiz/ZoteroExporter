@@ -12,7 +12,7 @@ async function exportSelectedItems() {
     // Prompt the user to select a folder
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-    fp.init(window, "Select a Folder", nsIFilePicker.modeGetFolder);
+    fp.init(window, "Export", nsIFilePicker.modeGetFolder);
 
     let result = await new Promise(resolve => fp.open(resolve));
     if (result != nsIFilePicker.returnOK && result != nsIFilePicker.returnReplace) {
